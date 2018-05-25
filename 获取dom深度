@@ -1,0 +1,16 @@
+var getDomDepth = function getDomDepth(node) {
+  var max = 1;
+
+  void function fn(d, m) {
+    m++;
+    Array.from(d.children).forEach(function (n) {
+      if (n.children.length) {
+        fn(n, m);
+      } else {
+        if (max < m) max = m;
+      }
+    });
+  }(node, 1);
+
+  return max;
+};
